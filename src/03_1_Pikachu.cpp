@@ -5,13 +5,13 @@ class Personaje
 public:
     Personaje(sf::Vector2f position, sf::Color color)
     {
-        shape.setSize(sf::Vector2f(50, 50));
+        shape.setSize(sf::Vector2f(1, 1));
         shape.setPosition(position); // Posición inicial cuadro
         shape.setFillColor(color);
 
         // Cargar la imagen desde un archivo
         
-        if (!texture.loadFromFile("assets/images/pikachu.png"))
+        if (!texture.loadFromFile("assets/images/zoro.png"))
         {
         
         }
@@ -36,7 +36,7 @@ public:
         if (clock.getElapsedTime().asSeconds() >= frameTime)
         {
             currentFrame = (currentFrame + 1) % numFrames;
-            sprite.setTextureRect(sf::IntRect((currentFrame * 64)+17, 133, 64, 36));
+            sprite.setTextureRect(sf::IntRect((currentFrame * 35)+15, 0, 35, 57));
             clock.restart();
         }
     }
@@ -48,18 +48,18 @@ private:
     sf::Clock clock;
     float frameTime = 0.1f; // Tiempo entre cada frame en segundos
     int currentFrame = 0;
-    int numFrames = 4; // Número total de frames en la animación
-    int frameWidth = 32;
-    int frameHeight = 32;
+    int numFrames = 6; // Número total de frames en la animación
+    int frameWidth = 35;
+    int frameHeight = 57;
 };
 
-double velocidad = 0.1;
+double velocidad = 0.05;
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "DinoChrome");
+    sf::RenderWindow window(sf::VideoMode(600, 300), "DinoChrome");
 
-    Personaje pika(sf::Vector2f(400, 300), sf::Color::Red);
+    Personaje zoro(sf::Vector2f(300, 150), sf::Color::Red);
 
     while (window.isOpen())
     {
@@ -74,26 +74,26 @@ int main()
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
-            pika.move(velocidad * -1, 0);
+            zoro.move(velocidad * -1, 0);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         {
-            pika.move(velocidad, 0);
+            zoro.move(velocidad, 0);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         {
-            pika.move(0, velocidad * -1);
+            zoro.move(0, velocidad * -1);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
-            pika.move(0, velocidad);
+            zoro.move(0, velocidad);
         }
 
-        // Actualizar animacion pikachu
-        pika.update();
+        // Actualizar animacion zoro
+        zoro.update();
 
         window.clear();
-        pika.draw(window);
+        zoro.draw(window);
         window.display();
     }
 

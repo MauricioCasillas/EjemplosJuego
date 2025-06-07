@@ -3,11 +3,11 @@
 int main()
 {
     // Crear una ventana
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Image");
+    sf::RenderWindow window(sf::VideoMode(300, 580), "SFML Image");
 
     // Cargar la imagen desde un archivo
     sf::Texture texture;
-    if (!texture.loadFromFile("./assets/images/pikachu.png"))
+    if (!texture.loadFromFile("./assets/images/zoro.png"))
     {
         // Manejar el error si no se puede cargar la imagen
         return -1;

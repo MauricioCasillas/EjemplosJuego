@@ -3,18 +3,29 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Reproductor de musica");
+    sf::RenderWindow window(sf::VideoMode(713, 560), "Reproductor de musica");
 
     sf::Music music;
-    if (!music.openFromFile("./assets/music/musica.ogg"))
+    if (!music.openFromFile("./assets/music/zoro.mp3"))
     {
         // Error al cargar el archivo de música
         return -1;
     }
 
+    sf::Texture texture;
+    if (!texture.loadFromFile("./assets/images/zorojaja.jpg"))
+    {
+        // Manejar el error si no se puede cargar la imagen
+        return -1;
+    }
+
+    // Crear un sprite y asignarle la textura
+    sf::Sprite sprite(texture);
+
     // Reproducir la música
     music.play();
 
+    //Bucle principal
     while (window.isOpen())
     {
         sf::Event event;
@@ -27,6 +38,10 @@ int main()
         }
 
         window.clear();
+        
+        // Dibujar el sprite en la ventana
+        window.draw(sprite);
+
         // Dibujar elementos adicionales en la ventana si es necesario
         window.display();
 

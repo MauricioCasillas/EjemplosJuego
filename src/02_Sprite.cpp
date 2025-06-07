@@ -7,7 +7,7 @@ int main()
 
     // Cargar la imagen desde un archivo
     sf::Texture texture;
-    if (!texture.loadFromFile("assets/images/pikachu.png"))
+    if (!texture.loadFromFile("assets/images/zoro.png"))
     {
         // Manejo de error si no se puede cargar la imagen
         return -1;
@@ -20,9 +20,9 @@ int main()
     sf::Clock clock;
     float frameTime = 0.1f; // Tiempo entre cada frame en segundos
     int currentFrame = 0;
-    int numFrames = 4; // Número total de frames en la animación
-    int frameWidth = 32;
-    int frameHeight = 32;
+    int numFrames = 6; // Número total de frames en la animación
+    int frameWidth = 35;
+    int frameHeight = 57;
 
     while (window.isOpen())
     {
@@ -40,11 +40,12 @@ int main()
         if (clock.getElapsedTime().asSeconds() >= frameTime)
         {
             currentFrame = (currentFrame + 1) % numFrames;
-            sprite.setTextureRect(sf::IntRect((currentFrame * 64)+17, 133, 64, 36));
+            sprite.setTextureRect(sf::IntRect((currentFrame * frameWidth) + 15, 0, frameWidth, frameHeight));
             clock.restart();
         }
 
         window.clear();
+        window.draw(sprite);
         window.draw(sprite);
         window.display();
     }

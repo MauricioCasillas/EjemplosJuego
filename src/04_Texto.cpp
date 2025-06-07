@@ -7,7 +7,7 @@ int main()
 
     // Cargar la fuente de texto TTF
     sf::Font font;
-    if (!font.loadFromFile("./assets/fonts/Minecraft.ttf"))
+    if (!font.loadFromFile("./assets/fonts/OP.ttf"))
     {
         // Manejar el error si no se puede cargar la fuente
         return -1;
@@ -24,14 +24,14 @@ int main()
     // Crear un objeto de texto
     sf::Text text;
     text.setFont(font);
-    text.setString("Ejemplo texto Minecraft!");
-    text.setCharacterSize(29);
+    text.setString("SERE EL REY DE LOS PIRATAS");
+    text.setCharacterSize(45);
     text.setFillColor(sf::Color::White);
 
     // Crear un objeto de texto LOTR
     sf::Text text2;
     text2.setFont(font2);
-    text2.setString("Ejemplo texto LOTR");
+    text2.setString("ONE PIECE");
     text2.setCharacterSize(40);
     text2.setPosition(100, 100);
 

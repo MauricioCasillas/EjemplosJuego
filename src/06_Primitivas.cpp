@@ -3,6 +3,9 @@
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Window");
+    window.setFramerateLimit(60);
+
+    int posx = 0;
 
     while (window.isOpen())
     {
@@ -18,7 +21,7 @@ int main()
         // Dibujar primitivas básicas
         sf::CircleShape circle(50);
         circle.setFillColor(sf::Color::Red);
-        circle.setPosition(100, 100);
+        circle.setPosition(posx, 100);
         window.draw(circle);
 
         sf::RectangleShape rectangle(sf::Vector2f(200, 100));
@@ -35,6 +38,12 @@ int main()
         window.draw(triangle);
 
         window.display();
+
+        posx += 5; // Incrementar la posición x del círculo
+        if (posx > 800) // Si el círculo sale de la pantalla
+        {
+            posx = -100; // Reiniciar la posición del círculo si sale de la pantalla
+        }
     }
 
     return 0;

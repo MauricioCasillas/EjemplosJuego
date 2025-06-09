@@ -45,11 +45,7 @@ int main()
         // Dibujar elementos adicionales en la ventana si es necesario
         window.display();
 
-        // Esperar hasta que la música termine
-        if (music.getStatus() != sf::Music::Playing)
-        {
-            window.close();
-        }
+        
     }
 
     return 0;

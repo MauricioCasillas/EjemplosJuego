@@ -1,6 +1,51 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
+
+class Obstaculo
+{
+public:
+    Obstaculo(sf::Vector2f position)
+    {
+        // Cargar la imagen desde un archivo
+        if (!texture.loadFromFile("assets/images/zoro.png"))
+        {
+        
+        }
+        this->sprite = sf::Sprite(texture);
+        this->sprite.setPosition(position); // Posición inicial sprite
+        this->sprite.setTextureRect(sf::IntRect(13, 422, 41, 57)); // Recorta el primer frame
+    }
+
+    void update()
+    {
+        // Actualizar el frame de la animación
+        if (clock.getElapsedTime().asSeconds() >= frameTime)
+        {
+            currentFrame = (currentFrame + 1) % numFrames;
+            sprite.setTextureRect(sf::IntRect((currentFrame * 50)+13, 422, 41, 57));
+            clock.restart();
+        }
+    }
+
+    void draw(sf::RenderWindow &window)
+    {
+        window.draw(this->sprite);
+    }
+
+    
+
+private:
+    sf::Sprite sprite;
+    sf::Texture texture;
+    sf::Clock clock;
+    float frameTime = 0.1f; // Tiempo entre cada frame en segundos
+    int currentFrame = 0;
+    int numFrames = 4; // Número total de frames en la animación
+    int frameWidth = 50;
+    int frameHeight = 57;
+};
+
 class Pantalla
 {
 public:
@@ -12,7 +57,7 @@ public:
         
         }
         this->sprite = sf::Sprite(texture);
-        this->sprite.setTextureRect(sf::IntRect(500, 200, 1398, 808)); // Recorta
+        this->sprite.setTextureRect(sf::IntRect(0, 0, 1080, 540)); // Recorta 
 
         if (!font.loadFromFile("./assets/fonts/OP.ttf"))
         {
@@ -23,19 +68,20 @@ public:
         if (!font2.loadFromFile("./assets/fonts/Ring.ttf"))
         {
 
+
         }
          // Crear un objeto de texto
         text.setFont(font);
         text.setString("ONE PIECE");
-        text.setCharacterSize(100);
-        text2.setPosition(699, 200);
+        text.setCharacterSize(90);
+        text.setPosition(100, 50);
         text.setFillColor(sf::Color::Black);
 
         // Crear un objeto de texto LOTR
         text2.setFont(font2);
         text2.setString("Presiona Enter para comenzar");
-        text2.setCharacterSize(80);
-        text2.setPosition(100, 700);
+        text2.setCharacterSize(30);
+        text2.setPosition(70, 200);
         text2.setFillColor(sf::Color::Black);
 
     }
@@ -83,6 +129,15 @@ public:
 
     }
 
+    void musica(){
+        if (!music.openFromFile("./assets/music/franky.mp3"))
+        {
+
+        }
+        music.setLoop(true);
+        music.play(); 
+    }
+
     void move(float offsetX, float offsetY)
     {
         sprite.move(offsetX, offsetY);
@@ -109,6 +164,7 @@ public:
 
 
 private:
+    sf::Music music;
     sf::Sprite sprite;
     sf::Texture texture;
     sf::Clock clock;
@@ -153,14 +209,25 @@ double velocidad = 0.08; // Velocidad de movimiento del personaje
 int main()
 {
     // Crear la ventana principal del juego
-    sf::RenderWindow window(sf::VideoMode(1398, 808), "Zoro Esquiva");
+    sf::RenderWindow window(sf::VideoMode(1080, 540), "Las flipantes aventuras de Zoro el cazador de piratas");
+    sf::Texture texture;
+    if (!texture.loadFromFile("./assets/images/fondo.png"))
+    {
+        // Manejar el error si no se puede cargar la imagen
+        return -1;
+    }
+    sf::Sprite sprite(texture);
+    sprite.setTextureRect(sf::IntRect(350, 306, 1080, 540)); // Recorta
 
     // Mostrar pantalla de inicio y salir si el usuario cierra la ventana
     if (!PantallaInicio(window)) {
         return 0;
     }
 
-    Personaje zoro(sf::Vector2f(500, 300));
+    Personaje zoro(sf::Vector2f(417, 271)); // Posición inicial del personaje Zoro
+    zoro.musica(); // Reproducir música de ataque
+
+    Obstaculo tornado(sf::Vector2f(500, 200)); // Crear un obstáculo 
 
     while (window.isOpen())
     {
@@ -206,7 +273,10 @@ int main()
         }
 
         window.clear();
+        window.draw(sprite);
         zoro.draw(window);
+        tornado.draw(window); // Dibujar el obstáculo
+        tornado.update(); // Actualizar el obstáculo
         window.display();
     }
 

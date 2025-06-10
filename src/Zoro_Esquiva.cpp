@@ -1,50 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-
-
-class Obstaculo
-{
-public:
-    Obstaculo(sf::Vector2f position)
-    {
-        // Cargar la imagen desde un archivo
-        if (!texture.loadFromFile("assets/images/zoro.png"))
-        {
-        
-        }
-        this->sprite = sf::Sprite(texture);
-        this->sprite.setPosition(position); // Posición inicial sprite
-        this->sprite.setTextureRect(sf::IntRect(13, 422, 41, 57)); // Recorta el primer frame
-    }
-
-    void update()
-    {
-        // Actualizar el frame de la animación
-        if (clock.getElapsedTime().asSeconds() >= frameTime)
-        {
-            currentFrame = (currentFrame + 1) % numFrames;
-            sprite.setTextureRect(sf::IntRect((currentFrame * 50)+13, 422, 41, 57));
-            clock.restart();
-        }
-    }
-
-    void draw(sf::RenderWindow &window)
-    {
-        window.draw(this->sprite);
-    }
-
-    
-
-private:
-    sf::Sprite sprite;
-    sf::Texture texture;
-    sf::Clock clock;
-    float frameTime = 0.1f; // Tiempo entre cada frame en segundos
-    int currentFrame = 0;
-    int numFrames = 4; // Número total de frames en la animación
-    int frameWidth = 50;
-    int frameHeight = 57;
-};
+#include <Obstaculo.hpp>
 
 class Pantalla
 {
@@ -54,23 +10,19 @@ public:
         // Cargar la imagen desde un archivo
         if (!texture.loadFromFile("assets/images/intro.png"))
         {
-        
         }
         this->sprite = sf::Sprite(texture);
-        this->sprite.setTextureRect(sf::IntRect(0, 0, 1080, 540)); // Recorta 
+        this->sprite.setTextureRect(sf::IntRect(0, 0, 1080, 540)); // Recorta
 
         if (!font.loadFromFile("./assets/fonts/OP.ttf"))
         {
-            
         }
 
         // Cargar una fuente de texto
         if (!font2.loadFromFile("./assets/fonts/Ring.ttf"))
         {
-
-
         }
-         // Crear un objeto de texto
+        // Crear un objeto de texto
         text.setFont(font);
         text.setString("ONE PIECE");
         text.setCharacterSize(90);
@@ -83,26 +35,25 @@ public:
         text2.setCharacterSize(30);
         text2.setPosition(70, 200);
         text2.setFillColor(sf::Color::Black);
-
     }
 
-     void draw(sf::RenderWindow &window)
+    void draw(sf::RenderWindow &window)
     {
         window.draw(this->sprite);
         window.draw(this->sprite);
-        window.draw(this->text);   // Dibuja el texto "ONE PIECE"
+        window.draw(this->text);  // Dibuja el texto "ONE PIECE"
         window.draw(this->text2); // Dibuja el texto "Presiona Enter para comenzar =D"
     }
 
-    void musica(){
+    void musica()
+    {
         if (!music.openFromFile("./assets/music/Intro.mp3"))
         {
-
         }
         music.play(); // Reproducir en bucle
     }
 
-    private:
+private:
     sf::Text text;
     sf::Text text2;
     sf::Texture texture;
@@ -121,21 +72,19 @@ public:
         // Cargar la imagen desde un archivo
         if (!texture.loadFromFile("assets/images/zoro.png"))
         {
-        
         }
         this->sprite = sf::Sprite(texture);
-        this->sprite.setPosition(position); // Posición inicial sprite
+        this->sprite.setPosition(position);                       // Posición inicial sprite
         this->sprite.setTextureRect(sf::IntRect(15, 60, 35, 57)); // Recorta el primer frame
-
     }
 
-    void musica(){
+    void musica()
+    {
         if (!music.openFromFile("./assets/music/franky.mp3"))
         {
-
         }
         music.setLoop(true);
-        music.play(); 
+        music.play();
     }
 
     void move(float offsetX, float offsetY)
@@ -148,20 +97,21 @@ public:
         window.draw(this->sprite);
     }
 
-    void update(){
+    void update()
+    {
         // Actualizar el frame de la animación
         if (clock.getElapsedTime().asSeconds() >= frameTime)
         {
             currentFrame = (currentFrame + 1) % numFrames;
-            sprite.setTextureRect(sf::IntRect((currentFrame * 35)+15, 0, 35, 57));
+            sprite.setTextureRect(sf::IntRect((currentFrame * 35) + 15, 0, 35, 57));
             clock.restart();
         }
     }
 
-    void quieto() {
+    void quieto()
+    {
         sprite.setTextureRect(sf::IntRect(15, 60, 35, 57)); // Recorta el primer frame quieto
     }
-
 
 private:
     sf::Music music;
@@ -175,7 +125,7 @@ private:
     int frameHeight = 57;
 };
 
-int PantallaInicio(sf::RenderWindow& window)
+int PantallaInicio(sf::RenderWindow &window)
 {
     bool enPantallaInicio = true;
     Pantalla inicio;
@@ -220,14 +170,15 @@ int main()
     sprite.setTextureRect(sf::IntRect(350, 306, 1080, 540)); // Recorta
 
     // Mostrar pantalla de inicio y salir si el usuario cierra la ventana
-    if (!PantallaInicio(window)) {
+    if (!PantallaInicio(window))
+    {
         return 0;
     }
 
     Personaje zoro(sf::Vector2f(417, 271)); // Posición inicial del personaje Zoro
-    zoro.musica(); // Reproducir música de ataque
+    zoro.musica();                          // Reproducir música de ataque
 
-    Obstaculo tornado(sf::Vector2f(500, 200)); // Crear un obstáculo 
+    Obstaculo tornado(sf::Vector2f(500, 200)); // Crear un obstáculo
 
     while (window.isOpen())
     {
@@ -265,7 +216,7 @@ int main()
             zoro.move(0, velocidad);
             zoro.update();
             move = true;
-        }  
+        }
 
         if (!move)
         {
@@ -276,7 +227,7 @@ int main()
         window.draw(sprite);
         zoro.draw(window);
         tornado.draw(window); // Dibujar el obstáculo
-        tornado.update(); // Actualizar el obstáculo
+        tornado.update();     // Actualizar el obstáculo
         window.display();
     }
 

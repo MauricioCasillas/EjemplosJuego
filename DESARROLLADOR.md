@@ -17,8 +17,6 @@ y como editor se esta utilizando Visual Studio Code.
 
 Instalar todas las dependencias descritas arriba y dentro de una terminal de vscode ejecutar:
 
-> make run'NombreEjecutable'
+> make runZoro_Esquiva
 
-Por ejemplo para ejecutar '00_Ventana.cpp' correr el comando en la terminal de vscode:
-
-> make run00_Ventana
+En la terminal de vscode

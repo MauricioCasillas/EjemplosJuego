@@ -11,7 +11,7 @@
 
 int PantallaInicio(sf::RenderWindow& window)
 {
-    bool enPantallaInicio = true;
+    bool enPantallaInicio = true; // Variable para controlar si estamos en la pantalla de inicio
     Pantalla inicio;
     inicio.Musica();
 
@@ -196,7 +196,7 @@ int main()
                 
                 }
                 sprite = sf::Sprite(texture);
-                sprite.setPosition(200, 100); // Posición inicial sprite
+                sprite.setPosition(200, 10); // Posición inicial sprite
                 sf::Font font;
                 if (!font.loadFromFile("./assets/fonts/Pixel.ttf")) {
                     // Manejar el error si no se puede cargar la fuente

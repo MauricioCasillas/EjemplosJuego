@@ -18,7 +18,7 @@ $(BIN_DIR)/%.exe: $(SRC_DIR)/%.cpp
 all: $(EXE_FILES)
 
 # Regla para ejecutar cada archivo .exe
-run%: $(BIN_DIR)/%.exe
+jugar%: $(BIN_DIR)/%.exe
 	./$<
 
 # Regla para limpiar los archivos generados

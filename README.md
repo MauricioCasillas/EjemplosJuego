@@ -21,7 +21,15 @@ Reglas:
 4. Aparecerán tornados cada 2 segundos en la pantalla.
 5. Mientras mas tiempo sobrevivas tu puntaje comenzará a incrementar.
 6. Consigue tu record de puntuación.
-![alt text](<Ejemplosjuego Screenshot 2025.06.12 - 12.00.09.37-1.png>)
+
+## Imagenes de demostración
+
+![](<Pantalla de inicio.png>)
+
+![](Jugabilidad.png)
+
+![](<Pantalla de Game Over.png>)
+
 
 ## MANUAL DE DESARROLLADOR
 

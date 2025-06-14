@@ -7,8 +7,8 @@ class GameOver
 
         int FinalScore(int finalScore)
         {
-            this->score = finalScore; // Guardar el puntaje final
-            scoreText.setString("Puntaje Final: " + std::to_string(score)); // <-- Actualiza el texto aquí
+            this->Score = finalScore; // Guardar el puntaje final
+            scoreText.setString("Puntaje Final: " + std::to_string(Score)); // <-- Actualiza el texto aquí
             return 0;
         }
         
@@ -52,6 +52,6 @@ class GameOver
         sf::Font font; // Fuente para el texto
         sf::Text gameOverText; // Texto de Game Over
         sf::Text scoreText; // Texto de Game Over
-        int score=0; // Puntaje final del juego
+        int Score=0; // Puntaje final del juego
 
 };

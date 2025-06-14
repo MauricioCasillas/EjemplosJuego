@@ -2,8 +2,8 @@
 
 int main()
 {
-    THEGAME game;
-    game.jugar(); // Iniciar el juego
+    ZoroAventuras game;
+    game.Jugar(); // Iniciar el juego
 
     return 0;
 }

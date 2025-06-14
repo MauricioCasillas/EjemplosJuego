@@ -10,11 +10,11 @@
 #include <Vida.hpp>
 #include<GameOver.hpp>
 
-class THEGAME
+class ZoroAventuras
 {
     public:
         
-        void jugar()
+        void Jugar()
         {
             // Crear la ventana principal del juego
             sf::RenderWindow window(sf::VideoMode(1080, 540), "Las flipantes aventuras de Zoro el cazador de piratas");

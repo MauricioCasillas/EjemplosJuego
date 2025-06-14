@@ -1,0 +1,116 @@
+@startuml Diagrama
+
+class ZoroAventuras{
+    + Jugar()
+    + Velocidad()
+    - Texture texture
+    - Event event
+    - Clock scoreClock
+    - Clock obstaClock
+    - Music music
+}
+
+class Vida{
+    + Vida()
+    + Uptdate(VidaActual)
+    + Draw()
+    - Font font
+    - Text text
+}
+
+class Puntaje{
+    + Puntaje()
+    + Uptdate(Score)
+    + Draw()
+    - Font font
+    - Text text
+    - Clock clock
+}
+
+class Personaje{
+    + Personaje(Position)
+    + Uptdate()
+    + Draw()
+    + Musica()
+    + Move(Position)
+    + Quieto()
+    - Texture texture
+    - Sprite sprite
+    - Clock clock
+}
+
+class Pantalla{
+    + Pantalla()
+    + Draw()
+    + Musica()
+    + Musica2()
+    - Text text
+    - Text text2
+    - Font font
+    - Font font2
+    - Music music
+    - Sprite sprite1
+    - Texture texture
+}
+
+class Obstaculo{
+    + Sprite sprite
+    + Obstaculo(Position)
+    + Uptdate()
+    + Draw()
+    + Move(Position)
+    - Texture texture
+    - Clock clock
+    - float frameTime
+    - int currentFrame 
+    - int numFrames
+    - int frameWidth
+    - int frameHeight
+}
+
+class GameOver{
+    + int FinalScore(FinalScore)
+    + Background()
+    + Draw()
+    - Font font
+    - Text gameOverText
+    - Text scoreText
+    - Texture texture
+    - Sprite sprite
+    - int Score
+}
+
+class FinalScore
+class Zoro
+class Contador
+class Position
+class Score
+class JuegoPrincipal
+class VidaActual
+
+ZoroAventuras "1" -|> "1" JuegoPrincipal
+ZoroAventuras "1" *-- "1" Puntaje
+ZoroAventuras "1" o-- "1" Pantalla
+ZoroAventuras "1" *-- "1" Personaje
+ZoroAventuras "1" *-- "*" Obstaculo
+
+Pantalla "1" o-- "1" GameOver
+
+Vida "1" -|> "1" Contador
+Vida "1" o-- "1" VidaActual
+
+Puntaje "1" -|> "1" Contador
+Puntaje "1" o-- "1" Score
+
+Pantalla "1" *-- "2" Contador
+
+Zoro "1" o-- "*" Position
+Obstaculo "1" o-- "*" Position
+
+Zoro "1"*--"1" Vida
+Zoro "1" o-- "*" Obstaculo
+Zoro "1" -|> "1" Personaje
+
+GameOver "1" o-- "1" FinalScore
+
+@enduml

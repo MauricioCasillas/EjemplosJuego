@@ -8,7 +8,7 @@
 #include <cstdlib> // Para rand()
 #include <ctime>   // Para time()
 #include <Vida.hpp>
-#include<GameOver.hpp>
+#include<GameOverScreen.hpp>
 
 class ZoroAventuras
 {

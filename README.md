@@ -24,11 +24,12 @@ Reglas:
 
 ## Imagenes de demostración
 
-![](<Pantalla de inicio.png>)
+![alt text](<assets/images/Pantalla de inicio.png>)
 
-![](Jugabilidad.png)
+![alt text](assets/images/Jugabilidad.png)
 
-![](<Pantalla de Game Over.png>)
+![alt text](<assets/images/Pantalla de Game Over.png>)
+
 
 
 ## MANUAL DE DESARROLLADOR
